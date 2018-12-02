@@ -20,6 +20,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
                     <!-- So it works on mobile -->
@@ -33,7 +35,7 @@
 <body>
     <!-- Standard container so you don't forget -->
     <div class="container">
-        <form class="form" id="form">
+        <form class="form" method="GET" action="/get-fortune" id="form">
         <div class="row py-4">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -54,8 +56,8 @@
         </div>
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <input type="submit" name="submit" class="form-control text-center btn btn-outline-dark" value="SEE YOUR FORTUNE...">
+            <div id="submit-div" class="col-md-4">
+                <button id="submit" name="submit" type="submit" class="form-control text-center btn btn-light" value="SEE YOUR FORTUNE...">SEE YOUR FORTUNE...</button>
             </div>
             <div class="col-md-4"></div>
         </div>

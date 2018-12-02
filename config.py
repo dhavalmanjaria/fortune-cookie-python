@@ -1,25 +1,24 @@
 from logging.config import dictConfig
+import os
 
-flask_port = "5000"
+flask_port = "5002"
 flask_host = "0.0.0.0"
 
 # postgres
 postgres_username = 'postgres'
 postgres_password = 'password'
-db_name = "fortune-cookie"
+db_name = "fortunes"
 postgres_host = "127.0.0.1"
 postgres_port = "5432"
 
 
 # SQLALCHEMY
-sqlalchemy_database_uri = (
-    """postgres+psycopg2://{psql_user}:{psql_pass}+@{psql_host}:\
-{psql_port}/{psql_db}""").format(
-    psql_user=postgres_username,
-    psql_host=postgres_host,
-    psql_port=postgres_port,
-    psql_pass=postgres_password,
-    psql_db=db_name)
+# sqlalchemy_database_uri = ("""
+#     sqlite:///{path}\\\\fortunes.db""".format(
+#         path=os.path.dirname(os.path.realpath(
+#             __file__)).replace("\\", "\\\\")))
+
+sqlalchemy_database_uri = "sqlite:///fortunes.db"
 
 # Logging
 LOGGING_CONFIG = {
@@ -35,11 +34,6 @@ LOGGING_CONFIG = {
         }
     },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'trademapper.log'
-        },
         'debugfilehandler': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',

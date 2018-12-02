@@ -1,5 +1,5 @@
 # Create a "fortune cookie based on name and date."
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import config
@@ -24,12 +24,13 @@ def index(path=None):
     log.info("PATH: " + str(path))
     if path is not None:
         if '.js' in path or '.css' in path:
-            return send_from_directory('dist', path)
+            return send_from_directory('templates', path)
 
-    return send_from_directory('dist', 'index.html')
+    return send_from_directory('templates', 'index.html')
 
 @app.route('/get-fortune', methods=["GET"])
 def get_fortune():
+    """Get a fortune based on name and birthdate (in %Y-%m-%d) format."""
     name = request.args.get('name')
     birthdate = request.args.get('birthdate')
 
@@ -39,7 +40,7 @@ def get_fortune():
     fortune = dbapi.get_new_fortune(name_to_add + birthdate)
 
     log.info(fortune)
-    return fortune, 200
+    return render_template('fortune.html', fortune=fortune), 200
 
 if __name__ == '__main__':
     __init__.init_db(app, db)

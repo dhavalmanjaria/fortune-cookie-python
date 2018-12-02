@@ -7,6 +7,13 @@ import random
 log = logging.getLogger('app')
 
 def get_new_fortune(user_string):
+	"""Get a new fortune for an entry or the same fortune if this entry has already been made.
+
+	For a user_string, that is the name + birthdate, get a random fortune from the DB if the 
+	same name and birthdate has never been entered or get the one that was selected last time.
+	:params user_string: Name + birthdate, eg: johnsmith1970-01-10
+	:returns: Fortune as string.
+	"""
 	used_fortune = UsedFortunes.query.filter(
 		UsedFortunes.user_string == user_string).first()
 
